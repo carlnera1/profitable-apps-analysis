@@ -9,10 +9,11 @@
 #Goal:
 #Now the goal of this Data Analysis project is to help the company to understand what kind of mobile apps that are likely to attract more users.
 
-#This Project consists of 5 files (3 python programs & 2 Excel CSV for the Dataset)
+#This Project consists of 6 files (4 python programs & 2 Excel CSV for the Dataset)
 
 #----------PROGRAM STARTS HERE----------#
-from profappsDataCleaning import openCSV,clean_dup_googleplay,
+from profappsExp import openCSV, explore_dset
+from profappsDataCleaning import clean_dup_gplay, english_apps
 
 #Initializing dataset containers using lists
 dset_googleplay_header = []
@@ -60,6 +61,42 @@ for row in dset_googleplay:
 print("\nIn order to remove it, we will distinguish which are duplicate apps and those that does not have.")
 print("Our criteria is simple, we will only keep the record with the highest rating count\n")
 
-#Initializing 2nd version of dset_googleplay
-dset_googleplay_ver2 = []
-dset_googleplay_ver2 = 
+#Initializing 2nd version of dset_googleplay with the method returning the new dataset.
+dset_googleplay_ver2 = clean_dup_gplay(dset_googleplay)
+
+print("\Output Below:")
+
+for row in dset_googleplay_ver2:
+    name = row[0]
+    if name == 'Instagram':
+        print(row)
+
+print("\nAs you can see, there's only 1 app record of Instagram left same applies for other apps that has duplicate entries.\n")
+explore_dset(dset_googleplay_ver2,0,3,True,True)
+
+#---NEXT TASK: Removing Non-English Apps---#
+print("Next on our step in Datacleaning is to eliminate non-english apps on our datasets\nAs we navigate around both datasets, we notice that some of the names are not written in the english language and are not directed toward an English-speaking audience")
+print("\nLet's see examples below:\nAPPSTORE:\n")
+
+explore_dset(dset_appstore,810,815,True,True)
+
+print("\nANDROID:\n")
+
+explore_dset(dset_googleplay_ver2,4410,4415,True,True)
+
+print("\nFor this reason, we will remove these apps from the set.")
+print("\nHowever, in order to reduce the impact of data loss, we will only remove app if its name has more than 3 non-ASCII characters\n")
+
+#Initializing new empty datasets for googleplay and appstore (ver3 & ver2 respectively) with a method returning the new dataset.
+
+dset_googleplay_ver3 = english_apps(dset_googleplay_ver2,0)
+dset_appstore_ver2 = english_apps(dset_appstore,1)
+
+print("Result of the Process:\nGoogleplay\n");
+explore_dset(dset_googleplay_ver3,0,3,True,True)
+print("\nAppstore\n")
+explore_dset(dset_appstore_ver2,0,3,True,True)
+
+#Next Task: Isolating Free Apps
+
+#----------PROGRAM ENDS HERE---------#
