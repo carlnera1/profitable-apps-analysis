@@ -51,5 +51,15 @@ def english_apps(dset,index):
             new_dset.append(row);
     return new_dset;
 
+def free_apps(dset,index):
+    final_dset = [];
+    value_to_compare = '0';
+    if(index == 4): 
+        value_to_compare = '0.0';
+    for row in dset:
+        price = row[index];
+        if (price == value_to_compare):
+            final_dset.append(row);
+    return dset;
 
 

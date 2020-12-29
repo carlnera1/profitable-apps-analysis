@@ -13,7 +13,7 @@
 
 #----------PROGRAM STARTS HERE----------#
 from profappsExp import openCSV, explore_dset
-from profappsDataCleaning import clean_dup_gplay, english_apps
+from profappsDataCleaning import clean_dup_gplay, english_apps, free_apps
 
 #Initializing dataset containers using lists
 dset_googleplay_header = []
@@ -98,5 +98,19 @@ print("\nAppstore\n")
 explore_dset(dset_appstore_ver2,0,3,True,True)
 
 #Next Task: Isolating Free Apps
+print("\nThe last step on our data cleaning process is to isolate the free apps which is what we need for our analysis.\nData Cleaning Process below:\n")
+
+#Initializing new empty datasets for googleplay and appstore (final versions) with a method returning the new dataset. 
+dset_googleplay_ver_final = []
+dset_appstore_ver_final = []
+dset_googleplay_ver_final = free_apps(dset_googleplay_ver3,7)
+dset_appstore_ver_final = free_apps(dset_appstore_ver2,4)
+
+print("Result of the Process:\nGoogleplay\n")
+explore_dset(dset_googleplay_ver_final,0,10,True,True)
+print("\nAppstore\n")
+explore_dset(dset_appstore_ver_final,0,10,True,True)
+
+print("That should be enough thus concludes our data cleaning process. Moving onto our Data Analysis below:");
 
 #----------PROGRAM ENDS HERE---------#
