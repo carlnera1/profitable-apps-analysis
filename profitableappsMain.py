@@ -11,9 +11,9 @@
 
 #This Project consists of 6 files (4 python programs & 2 Excel CSV for the Dataset)
 
-#----------PROGRAM STARTS HERE----------#
 from profappsExp import openCSV, explore_dset
 from profappsDataCleaning import clean_dup_gplay, english_apps, free_apps
+from profappsAnalysis import analysis_dataset
 
 #Initializing dataset containers using lists
 dset_googleplay_header = []
@@ -111,6 +111,19 @@ explore_dset(dset_googleplay_ver_final,0,10,True,True)
 print("\nAppstore\n")
 explore_dset(dset_appstore_ver_final,0,10,True,True)
 
-print("That should be enough thus concludes our data cleaning process. Moving onto our Data Analysis below:");
+print("That should be enough thus concludes our data cleaning process. Moving onto our Data Analysis below:")
 
-#----------PROGRAM ENDS HERE---------#
+print("\n\nPROFITABLE APPS ANALYSIS\n")
+
+list_choices = ["1 - Most Common Apps by Genre" , "2 - Most Popular Apps by Genre in the App Store", "3 - Most Popular Apps by Genre on Google Play", "4 - Exit"];
+loop = True
+while loop:
+    for choices in list_choices:
+        print(choices , "\n")
+    choice = input("\nChoose from one of the data analysis below:")
+    if choice == '4':
+        loop = False
+        print("Thank you for using this Data Analysis Program.")
+    else:
+        analysis_dataset(choice)
+    
