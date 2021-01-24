@@ -115,15 +115,14 @@ print("That should be enough thus concludes our data cleaning process. Moving on
 
 print("\n\nPROFITABLE APPS ANALYSIS\n")
 
-list_choices = ["1 - Most Common Apps by Genre" , "2 - Most Popular Apps by Genre in the App Store", "3 - Most Popular Apps by Genre on Google Play", "4 - Exit"];
+list_choices = ["1 - Most Common Apps by Genre" , "2 - Most Popular Apps by Genre in the App Store", "3 - Most Popular Apps by Genre on Google Play","4 - Analysis Conclusion", "5 - Exit"];
 loop = True
 while loop:
     for choices in list_choices:
         print(choices , "\n")
-    choice = input("\nChoose from one of the data analysis below:")
-    if choice == '4':
+    choice = input("Choose from one of the data analysis options above: ")
+    if choice == '5':
         loop = False
         print("Thank you for using this Data Analysis Program.")
     else:
-        analysis_dataset(choice)
-    
+        analysis_dataset(choice,dset_googleplay_ver_final,dset_appstore_ver_final)
